@@ -1,0 +1,67 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div style="text-align: center">
+    <h1>Tasks Dashboard</h1>  
+<div>
+    <label for="tinfo">User : Sreedhar </label>
+</div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label for="tinfo"><span class="req">* </span> Task Info : </label>
+                        <input required type="text" [(ngModel)]="taskobj.taskmemo" name="taskinfo" id="taskinfo" class="form-control" minlength="5" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tinfo"><span class="req">* </span> Target date: : </label>
+                        <input required type="date" [ngModel]="taskobj.taskEndDate | date : 'yyyy-MM-dd'" (ngModelChange)="taskobj.taskEndDate = $event" name="targetdate" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" name="submit_task" value="Add Task" (click)="addTask()" >
+                    </div>
+                </fieldset>
+            </form>
+         </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row col-md-6 custyle">
+    <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Created On</th>
+            <th>
+                <a class="link" (click)="sortedcolumn = 'taskEndDate'">End Date </a>
+            </th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of alltasks | sort : sortedcolumn; index as i; ">
+            <td>{{task.id}}</td>
+            <td>{{task.taskmemo}}</td>
+            <td>{{task.taskEndDate}}</td>
+            <td>{{task.taskEndDate}}</td>
+            <td>{{task.status}}</td>
+            <td>
+                <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+                <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn" (click)="updateTask(task.id, task)" type="submit">Save</button>
+                <a href="#" class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod($event, i)">edit</a>
+            </td>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteTask(task.id)"><span class="glyphicon glyphicon-remove"></span>Task Delete</button></td>
+          </tr>
+    </tbody>
+    </table>
+    </div>
+</div>
