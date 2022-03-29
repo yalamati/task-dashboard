@@ -1,6 +1,6 @@
 
 # Demo 
-The detailed demo is available at https://youtu.be/r2L0ZnydWgk
+The detailed demo of the application is available at https://youtu.be/r2L0ZnydWgk
 
 # TaskDashboard
 
