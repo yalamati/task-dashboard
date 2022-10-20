@@ -2,7 +2,7 @@ name: Test_Env
 
 on:
   schedule:
-   - cron: * * * * *
+   - cron: "*/5 * * * ?"
 
 jobs:
   test_env_Job:
