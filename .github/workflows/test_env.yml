@@ -11,6 +11,6 @@ jobs:
         id: github_env_var
         run: echo "RELEASE_VERSION=1.5" >> $GITHUB_ENV
       - name: Print GitHub
-        run: echo "${{ github.env.RELEASE_VERSION }}"
+        run: echo "${{ env.RELEASE_VERSION }}"
 
 run-name: ${{ github.env.RELEASE_VERSION }}
