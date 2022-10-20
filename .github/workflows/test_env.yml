@@ -2,15 +2,18 @@ name: Test_Env
 
 on:
   workflow_dispatch: {}
+  
 
 jobs:
   test_env_Job:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.github_env_var.outputs.RELEASE_VERSION }}
+      
     steps:
       - name: GitHub Env Variable
         id: github_env_var
-        run: echo "RELEASE_VERSION=1.5" >> $GITHUB_ENV
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+        run: echo "RELEASE_VERSION=1.5" >> $GITHUB_OUTPUT
+
+run-name: ${{ jobs.test_env_Job.outputs.output1 }}
         
