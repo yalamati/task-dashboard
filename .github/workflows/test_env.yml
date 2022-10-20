@@ -1,5 +1,7 @@
 name: Test_Env
 
+run-name: "TEST ACTION"
+
 on:
   workflow_dispatch: {}
 
@@ -11,4 +13,4 @@ jobs:
         id: github_env_var
         run: echo "RELEASE_VERSION=1.5" >> $GITHUB_ENV
 
-run-name: ${{ github.env.RELEASE_VERSION }}
+
